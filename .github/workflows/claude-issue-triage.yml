@@ -37,7 +37,11 @@ jobs:
                - `documentation` — docs need updating
                - `good first issue` — simple, beginner-friendly task
                - `duplicate` — if it seems like a known/repeated problem
-            2. **Post a comment** on the issue that includes:
+            2. **Post a comment** on the issue. The comment body MUST be written in GitHub Flavored Markdown
+               so GitHub renders it correctly: use `##` headings for sections, `**bold**` for field names,
+               `-` or numbered lists for steps, backticks for inline code and triple-backtick fenced blocks
+               (with a language tag) for code snippets, and real line breaks instead of `\n` escapes.
+               The comment must include:
                - A brief, friendly summary of what the issue is about (1-2 sentences)
                - A "Formatted Report" section with:
                  - **Type**: Bug / Feature Request / Question / Other
@@ -48,5 +52,6 @@ jobs:
                - A closing note thanking the contributor
             Use the `gh` CLI to apply labels and post the comment. Example commands:
               gh issue edit ${{ github.event.issue.number }} --add-label "bug" --repo ${{ github.repository }}
-              gh issue comment ${{ github.event.issue.number }} --body "..." --repo ${{ github.repository }}
+              gh issue comment ${{ github.event.issue.number }} --body-file comment.md --repo ${{ github.repository }}
+            Prefer writing the Markdown to a file and using `--body-file` so multi-line formatting is preserved.
             Be concise, helpful, and friendly. Do not over-engineer the response.
